@@ -24,7 +24,7 @@
     ```
 
 ## 2.3 编辑配置文件
-- 在项目根目录下找到 `config.yaml` 文件，修改里面的配置信息
+- 复制 `config.yaml-example` 文件，粘贴名称为 `config.yaml` ，然后，修改里面 `config.yaml` 的配置信息
   - `linea`
     - `upset`: 账号是否打乱账号顺序执行，true 是打乱，false 是不打乱
     - `access`:
@@ -39,7 +39,7 @@
       - > 到 [https://lineascan.build/](https://lineascan.build/) 进行注册并登录后打开 [https://lineascan.build/myapikey](https://lineascan.build/myapikey) `Add` 一个 `API Key Token` 之后粘贴到配置文件
 
 ## 2.4 编辑 `wallet.csv` 收款钱包文件
-- 在项目根目录下找到 `wallet.csv` 文件，编辑里面的收款钱包私钥与代理地址，一行一个
+- 复制 `wallet.csv-example` 文件，粘贴名称为 `wallet.csv` ，然后，编辑 `wallet.csv` 里面的收款钱包私钥与代理地址，一行一个
   - `私钥`: 必须填写
   - `代理地址`: 可选，如果不填写，则默认使用将直接使用电脑本身的IP，填写格式为`ip:port:username:password`，如`192.168.100.10:8888:admin:admin`
 
