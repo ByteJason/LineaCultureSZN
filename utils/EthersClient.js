@@ -80,7 +80,6 @@ class EthersClient {
                 return -1;
             }
             const data = await response.json();
-            console.log(data)
             const transactions = data.result;
 
             let interactions = transactions.filter(tx =>
