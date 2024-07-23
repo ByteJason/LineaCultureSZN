@@ -1,0 +1,18 @@
+linea:
+  # 账号是否打乱顺序执行（账号顺序和任务顺序）
+  upset: true
+  access:
+    # 账号之间的间隔随机（最小值）秒
+    second_min: 10
+    # 账号之间的间隔随机（最大值）秒
+    second_max: 20
+  # 加多少gas,单位 gwei，【是获取当前的gas后再加这个数】【不像+gas可以改0】
+  add_gas_price: 0.005
+
+chain:
+  linea:
+    rpc_url: "https://linea.blockpi.network/v1/rpc/public"
+#    rpc_url: "https://linea.decubate.com"
+    max_gas: 0
+    explorer_url: "https://api.lineascan.build"
+    explorer_apikey: ""
