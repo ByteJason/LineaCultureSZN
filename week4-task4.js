@@ -43,7 +43,7 @@ async function index() {
                         result = await getSignature(address, access.ProxyObj);
                     } catch (e) {
                         dd(address + ' - ' + e.toString(), 'error');
-                        await sleep(2);
+                        await sleep(1);
                     }
                     if (j > 150) {
                         break;
@@ -60,14 +60,14 @@ async function index() {
                 try {
                     hexData = genHex(result.data.voucher, result.data.signature);
 
-                    await main.sendTransaction(wallet, contractAddress, hexData, value, main.config.linea_park.add_gas_price);
+                    await main.sendTransaction(wallet, contractAddress, hexData, value, main.config.linea.add_gas_price);
 
                     await main.suffix({
                         sleep: true,
                         count: count,
                         current: current,
-                        minSecond: main.config.linea_park.access.second_min,
-                        maxSecond: main.config.linea_park.access.second_max,
+                        minSecond: main.config.linea.access.second_min,
+                        maxSecond: main.config.linea.access.second_max,
                     });
                 } catch (e) {
                     console.log(e)
@@ -103,7 +103,6 @@ function genHex(voucher, signature) {
 async function getSignature(address, proxyObj) {
     // 请求 URL
     const url = 'https://public-api.phosphor.xyz/v1/purchase-intents';
-
     // 请求头
     const headers = {
         'accept': '*/*',
@@ -122,8 +121,6 @@ async function getSignature(address, proxyObj) {
         'sec-fetch-site': 'same-site',
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
     };
-
-
     // 请求体
     const data = {
         "buyer": {"eth_address": address},
