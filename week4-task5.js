@@ -31,10 +31,19 @@ async function index() {
             const wallet = main.EthersObj.getWallet(access.PrivateKey);
             const address = wallet.address;
 
-            /**
-             * ************************************************************
-             */
-            const mint = await isMint(address, listingId, access.ProxyObj);
+            let mint = null;
+            let j = 0;
+            while (mint === null || mint === 429) {
+                j++;
+                try {
+                    mint = await isMint(address, listingId, access.ProxyObj);
+                } catch (e) {
+                    await sleep(2);
+                }
+                if (j > 100) {
+                    break;
+                }
+            }
             if (mint === false) {
                 let result = null;
                 let j = 0;
@@ -185,12 +194,11 @@ async function isMint(address, listingId, proxyObj) {
         config.httpAgent = agent;
     }
 
-    try {
-        const res = await axios.get(url, config);
-        return res.status !== 200 || !res.data || res.data.quantity_claimed > 0;
-    } catch (e) {
-        console.error(e.toString());
-        return true;
+    const res = await axios.get(url, config);
+    if (res.status === 200 || res.status === 201) {
+        return !res.data || res.data.quantity_claimed > 0;
+    } else {
+        return res.status;
     }
 }
 
